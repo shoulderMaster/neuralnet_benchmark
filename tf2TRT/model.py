@@ -4,6 +4,12 @@ import numpy as np
 import os
 
 def save_model(name, model) :
+
+#   output_names = model.output.op.name
+    #frozen_graph = tf.graph_util.convert_variables_to_constants(sess, sess.graph.as_graph_def(), [output_names])
+    output_names = model.output.op.name
+    sess = tf.keras.backend.get_session()
+
     path = "./saved_model/%s" % name
     if not os.path.isdir(path) :
         os.makedirs(path)
